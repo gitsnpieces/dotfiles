@@ -1,0 +1,319 @@
+# palette = "cyberpunk_scarlet"
+# palette = "catppuccin_mocha"
+palette = "terminal"
+
+format = """
+[](text)\
+$shell\
+$os\
+($username$hostname[ ](bg:text))\
+[](fg:text bg:overlay2)\
+$directory\
+[](fg:overlay2 bg:overlay1)\
+[](fg:overlay1 bg:surface2)\
+$git_branch\
+$git_status\
+([](fg:surface2 bg:surface1)[](fg:surface1 bg:surface0)\
+$git_metrics\
+$git_state\
+[](fg:surface0 bg:surface1)[](fg:surface1 bg:surface2))\
+[](fg:surface2 bg:blue)\
+[](fg:blue bg:lavender)\
+$custom\
+$rust\
+$c\
+$elixir\
+$elm\
+$golang\
+$gradle\
+$haskell\
+$java\
+$julia\
+$nodejs\
+$nim\
+$scala\
+[](fg:lavender bg:blue)\
+$docker_context\
+[](fg:blue bg:sky)\
+[](fg:sky)\
+$fill\
+[](fg:sky)\
+[](fg:sky bg:blue)\
+[](fg:blue bg:overlay2)\
+$time\
+[](fg:sky bg:overlay2)\
+$battery\
+[](fg:black)\
+$line_break\
+$character\
+"""
+
+[palettes.terminal]
+rosewater = "bright-pink"
+flamingo = "bright-purple"
+pink = "purple"
+mauve = "#cba6f7"
+red = "red"
+maroon = "purple"
+peach = "yellow"
+yellow = "bright-yellow"
+green = "green"
+teal = "bright-cyan"
+sky = "bright-blue"
+sapphire = "cyan"
+blue = "blue"
+lavender = "bright-green"
+text = "#d6cdf4"
+subtext1 = "#c2bade"
+subtext0 = "#ada6c8"
+overlay2 = "#9993b2"
+overlay1 = "#847f9c"
+overlay0 = "#706c86"
+surface2 = "#5b5870"
+surface1 = "#47455a"
+surface0 = "#323144"
+base = "#1e1e2e"
+mantle = "#181825"
+crust = "#11111b"
+
+[palettes.cyberpunk_scarlet]
+rosewater = "#ffbbdd"
+flamingo = "#be4e7c"
+pink = "#ff3270"
+mauve = "#cba6f7"
+red = "#ff0055"
+maroon = "#70243d"
+peach = "#ff9100"
+yellow = "#ffff00"
+green = "#009550"
+teal = "#00ffc8"
+sky = "#00a2ff"
+sapphire = "#00ccff"
+blue = "#3d81fe"
+lavender = "#6766b3"
+text = "#d6cdf4"
+subtext1 = "#c2bade"
+subtext0 = "#ada6c8"
+overlay2 = "#9993b2"
+overlay1 = "#847f9c"
+overlay0 = "#706c86"
+surface2 = "#5b5870"
+surface1 = "#47455a"
+surface0 = "#323144"
+base = "#1e1e2e"
+mantle = "#181825"
+crust = "#11111b"
+
+[palettes.catppuccin_mocha]
+rosewater = "#f5e0dc"
+flamingo = "#f2cdcd"
+pink = "#f5c2e7"
+mauve = "#cba6f7"
+red = "#f38ba8"
+maroon = "#eba0ac"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+teal = "#94e2d5"
+sky = "#89dceb"
+sapphire = "#74c7ec"
+blue = "#89b4fa"
+lavender = "#b4befe"
+text = "#cdd6f4"
+subtext1 = "#bac2de"
+subtext0 = "#a6adc8"
+overlay2 = "#9399b2"
+overlay1 = "#7f849c"
+overlay0 = "#6c7086"
+surface2 = "#585b70"
+surface1 = "#45475a"
+surface0 = "#313244"
+base = "#1e1e2e"
+mantle = "#181825"
+crust = "#11111b"
+
+# Disable the blank line at the start of the prompt
+# add_newline = false
+
+[character]
+# success_symbol = '[  󱞩](bold text)'
+success_symbol = '[➜](bold green)'
+error_symbol = '[](bold red)[ 󱞩](bold text)'
+vimcmd_symbol = '[](bold flamingo)[ 󱞩](bold text)'
+
+[fill]
+symbol = '─'
+style = 'fg:green'
+
+# You can also replace your username with a neat symbol like   or disable this
+# and use the os module below
+[username]
+style_user = "bold bg:text fg:base"
+style_root = "bold bg:text fg:base"
+format = '[$user]($style)'
+show_always = false
+disabled = false
+
+# An alternative to the username module which displays a symbol that
+# represents the current operating system
+[os]
+style = "bg:text fg:base"
+disabled = false
+
+[hostname]
+style = "bg:text fg:base"
+format = '[@$hostname]($style)'
+
+[directory]
+style = "bg:overlay2 fg:base"
+format = "[ $path ]($style)"
+# truncation_length = 3
+# truncation_symbol = "…/"
+fish_style_pwd_dir_length = 1
+
+[c]
+symbol = " "
+style = "bg:lavender fg:base"
+format = '[ $symbol ($version) ]($style)'
+
+[docker_context]
+symbol = " "
+style = "bg:blue fg:base"
+format = '[ $symbol $context ]($style)'
+
+[elixir]
+symbol = " "
+style = "bg:lavender fg:base"
+format = '[ $symbol ($version) ]($style)'
+
+[elm]
+symbol = " "
+style = "bg:lavender fg:base"
+format = '[ $symbol ($version) ]($style)'
+
+[git_branch]
+symbol = ""
+style = "bg:surface2 fg:text"
+format = '[ $symbol $branch ]($style)'
+
+[git_status]
+style = "bg:surface0 fg:base"
+format = '[$all_status$ahead_behind ]($style)'
+disabled = true
+
+[git_metrics]
+disabled = false
+added_style = "bg:surface0 fg:green"
+deleted_style = "bg:surface0 fg:red"
+format = """
+([ ]($added_style)([+$added ]($added_style))([-$deleted]($deleted_style))[ ]($deleted_style))\
+"""
+
+[git_state]
+style = "bg:surface0 fg:text"
+
+[golang]
+symbol = " "
+style = "bg:lavender fg:base"
+format = '[ $symbol ($version) ]($style)'
+
+[gradle]
+style = "bg:lavender fg:base"
+format = '[ $symbol ($version) ]($style)'
+
+[haskell]
+symbol = " "
+style = "bg:lavender fg:base"
+format = '[ $symbol ($version) ]($style)'
+
+[java]
+symbol = " "
+style = "bg:lavender fg:base"
+format = '[ $symbol ($version) ]($style)'
+
+[julia]
+symbol = " "
+style = "bg:lavender fg:base"
+format = '[ $symbol ($version) ]($style)'
+
+[nodejs]
+symbol = ""
+style = "bg:lavender fg:base"
+format = '[ $symbol ($version) ]($style)'
+
+[nim]
+symbol = "󰆥 "
+style = "bg:lavender fg:base"
+format = '[ $symbol ($version) ]($style)'
+
+[rust]
+symbol = ""
+style = "bg:lavender fg:base"
+format = '[ $symbol ($version) ]($style)'
+
+[scala]
+symbol = " "
+style = "bg:lavender fg:base"
+format = '[ $symbol ($version) ]($style)'
+
+[time]
+disabled = false
+time_format = "%r" # Hour:Minute Format
+style = "bg:overlay2 fg:crust"
+format = '[   $time ]($style)'
+
+[battery]
+format = '[ $symbol$percentage ]($style)'
+
+[[battery.display]]
+threshold = 50
+style = "bg:maroon fg:base"
+
+[cmd_duration]
+show_milliseconds = true
+show_notifications = true
+min_time_to_notify = 60_000
+
+[shell]
+disabled = false
+bash_indicator = " "
+zsh_indicator = "󱆃 "
+nu_indicator = " "
+fish_indicator = "󰈺 "
+style = "bg:text fg:base"
+format = '[$indicator]($style)'
+
+[status]
+symbol = '🔴 '
+map_symbol = true
+disabled = false
+
+[custom.svelte]
+symbol = " "
+style = "bg:lavender fg:base"
+description = "Svelte detected"
+detect_files = ['svelte.config.js']
+
+[custom.npm]
+symbol = "  "
+style = "bg:lavender fg:base"
+description = "NPM detected"
+detect_files = ['package-lock.json']
+
+[custom.yarn]
+symbol = " "
+style = "bg:lavender fg:base"
+description = "Yarn detected"
+detect_files = ['yarn.lock']
+
+[custom.wrangler]
+symbol = " 󰼃"
+style = "bg:lavender fg:base"
+description = "Cloudflare Wrangler detected"
+detect_files = ['wrangler.toml']
+
+#
+# [custom.mise]
+# command = "echo 🍽️"
+# description = "Mise detected"
+# detect_files = ['.mise.toml']
