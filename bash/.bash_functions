@@ -1,7 +1,5 @@
-
-# paste.c-net.org functions
-pastebin()
-{
+# paste.c-net.org
+pastebin(){
     local url='https://paste.c-net.org/'
     if (( $# )); then
         local file
@@ -16,8 +14,7 @@ pastebin()
     fi
 }
 
-pasteget()
-{
+pasteget(){
     local url='https://paste.c-net.org/'
     if (( $# )); then
         local arg
