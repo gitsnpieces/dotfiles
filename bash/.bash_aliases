@@ -15,7 +15,6 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias cls='clear'
 alias cfv='cfv -n -s -v -p'
-#alias cp='cp -iv'
 alias cpuid='cat /sys/devices/cpu/caps/pmu_name'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
@@ -24,12 +23,9 @@ alias h='history'
 alias uninstall='sudo apt remove'
 alias meminfo="free -h -m -l -t -w"
 alias mount='sudo mount'
-#alias mv='mv -iv'
 alias myip='curl ifconfig.io/ip'
 alias nano='nano -w'
 alias pass='openssl rand -base64 20'
-#alias rm='rm -iv'
-alias source='source .bashrc'
 alias umount='sudo umount'
 
 # power aliases
@@ -54,3 +50,9 @@ alias ipmi='sudo ipmitool'
 
 # srrdb aliases
 alias srr='sudo srr_check -f -c -v'
+
+# git aliases
+alias status='git status'
+alias push='git push origin main'
+alias pull='git pull'
+alias add='git add .'
