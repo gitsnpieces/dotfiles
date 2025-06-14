@@ -1,5 +1,5 @@
 # system aliases
-alias ls='ls -lah --color=auto'
+alias ls='eza -l -o -h -a --icons=always --git'
 alias cputemp="awk '/temp1/ {print +$2"°C"}' <(sensors)"
 alias df='df -hT'
 alias dmesg='sudo dmesg -T'
@@ -29,6 +29,7 @@ alias myip='curl ifconfig.io/ip'
 alias nano='nano -w'
 alias pass='openssl rand -base64 20'
 #alias rm='rm -iv'
+alias source='source .bashrc'
 alias umount='sudo umount'
 
 # power aliases

@@ -260,7 +260,7 @@ format = '[ $symbol ($version) ]($style)'
 disabled = false
 time_format = "%r" # Hour:Minute Format
 style = "bg:overlay2 fg:crust"
-format = '[   $time ]($style)'
+format = '[  $time ]($style)'
 
 [battery]
 format = '[ $symbol$percentage ]($style)'

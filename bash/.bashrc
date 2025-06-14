@@ -53,6 +53,10 @@ shopt -s cmdhist
 HISTSIZE=99999
 HISTFILESIZE=99999
 
+# initiate ssh-agent
+eval $(ssh-agent -s)
+ssh-add ~/.ssh/id_ed25519
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
