@@ -1,0 +1,43 @@
+#---------------------------------------------------#
+#  updated: 06-12-2024                              #
+#---------------------------------------------------#
+
+Host *
+  ServerAliveInterval 60
+
+#===================================================#
+# iNTERNAL HOSTS                                    #
+#===================================================#
+
+Host unifi
+  Hostname 192.168.1.1
+   User root
+
+Host du
+  Hostname 192.168.1.100
+  Port 55899
+  User sleep
+  IdentityFile C:\Users\sleep\.ssh\id_ed25519
+
+Host zi
+  Hostname 192.168.1.101
+  #Port 33899
+  User sleep
+  IdentityFile C:\Users\sleep\.ssh\id_ed25519
+
+#===================================================#
+# EXTERNAL HOSTS                                    #
+#===================================================#
+  
+Host vps
+# Hostname 46.250.244.40
+  Hostname vpn.ghostnetworks.com
+  Port 55822
+  User sleep
+  IdentityFile C:\Users\addmin\.ssh\id_ed25519
+
+Host tty
+# TTY SSH
+  HostName tty3.amiga.cg
+  User i
+  Port 57600
