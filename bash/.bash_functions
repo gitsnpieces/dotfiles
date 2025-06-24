@@ -28,3 +28,8 @@ pasteget(){
         done
     fi
 }
+
+# starship terminal title
+function set_win_title(){
+     echo -ne "\033]0; $(basename "$USER@$HOSTNAME") \007"
+}

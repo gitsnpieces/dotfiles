@@ -1,16 +1,14 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
 format = """
 [░▒▓](#a3aed2)\
-[ $os ](bg:#a3aed2 fg:#090c0c)\
+[  $os ](bg:#a3aed2 fg:#090c0c)\
 [](bg:#769ff0 fg:#a3aed2)\
 $directory\
 [](fg:#769ff0 bg:#394260)\
 $git_branch\
 $git_status\
 [](fg:#394260 bg:#212736)\
-$nodejs\
-$rust\
-$golang\
-$php\
 [](fg:#212736 bg:#1d2230)\
 $time\
 [ ](fg:#1d2230)\
@@ -41,28 +39,60 @@ format = '[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)'
 disabled = false
 time_format = "%I:%M %P"
 style = "bg:#1d2230"
-format = '[[  🕙 $time ](fg:#a0a9cb bg:#1d2230)]($style)'
+format = '[[ 🕙 $time ](fg:#a0a9cb bg:#1d2230)]($style)'
+
+[character]
+success_symbol = "[ ](bold blue) "
+#success_symbol = "[✔ ](bold green) "
+error_symbol = "[✖ ](bold red) "
 
 [os]
 disabled = false
 style = "bg:red fg:crust"
 
 [os.symbols]
-Windows = ""
-Ubuntu = "󰕈"
-SUSE = ""
-Raspbian = "󰐿"
-Mint = "󰣭"
-Macos = "󰀵"
-Manjaro = ""
-Linux = "󰌽"
-Gentoo = "󰣨"
-Fedora = "󰣛"
-Alpine = ""
-Amazon = ""
-Android = ""
-Arch = "󰣇"
-Artix = "󰣇"
-CentOS = ""
-Debian = "󰣚"
-Redhat = "󱄛"
+Alpaquita = " "
+Alpine = " "
+AlmaLinux = " "
+Amazon = " "
+Android = " "
+Arch = " "
+Artix = " "
+CachyOS = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = "󰛓 "
+Gentoo = " "
+HardenedBSD = "󰞌 "
+Illumos = "󰈸 "
+Kali = " "
+Linux = " "
+Mabox = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+Nobara = " "
+OpenBSD = "󰈺 "
+openSUSE = " "
+OracleLinux = "󰌷 "
+Pop = " "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+RockyLinux = " "
+Redox = "󰀘 "
+Solus = "󰠳 "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Void = " "
+Windows = "󰍲 "
