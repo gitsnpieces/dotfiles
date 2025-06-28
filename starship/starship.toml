@@ -44,7 +44,7 @@ format = '[[ 🕙 $time ](fg:#a0a9cb bg:#1d2230)]($style)'
 [character]
 success_symbol = "[ ](bold blue) "
 #success_symbol = "[✔ ](bold green) "
-error_symbol = "[✖ ](bold red) "
+error_symbol = "[ 💀](bold red) "
 
 [os]
 disabled = false
