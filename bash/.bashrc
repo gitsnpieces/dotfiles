@@ -8,6 +8,9 @@ case $- in
       *) return;;
 esac
 
+export VISUAL=nano
+export EDITOR=nano
+
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob
 

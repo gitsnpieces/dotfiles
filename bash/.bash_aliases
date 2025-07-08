@@ -1,6 +1,5 @@
 # system aliases
 alias ls='eza -l -o -h -a --icons=always --git'
-alias cputemp="awk '/temp1/ {print +$2"°C"}' <(sensors)"
 alias df='df -hT'
 alias dmesg='sudo dmesg -T'
 alias update='sudo apt update'
@@ -21,12 +20,13 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias h='history'
 alias uninstall='sudo apt remove'
-alias meminfo="free -h -m -l -t -w"
+alias meminfo='free -h -m -l -t -w'
 alias mount='sudo mount'
 alias myip='curl ifconfig.io/ip'
 alias nano='nano -w'
 alias pass='openssl rand -base64 20'
 alias umount='sudo umount'
+alias uptime="uptime -p | sed 's/up //'"
 
 # power aliases
 alias reboot='sudo /sbin/reboot'

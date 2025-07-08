@@ -30,8 +30,8 @@ Host zi
 #===================================================#
   
 Host vps
-# Hostname 46.250.244.40
-  Hostname vpn.ghostnetworks.com
+  Hostname 46.250.244.40
+  #Hostname vpn.ghostnetworks.com
   Port 55822
   User sleep
   IdentityFile C:\Users\addmin\.ssh\id_ed25519
