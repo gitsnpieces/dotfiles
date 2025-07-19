@@ -10,6 +10,7 @@ esac
 
 export VISUAL=nano
 export EDITOR=nano
+export HISTTIMEFORMAT="%F-%T "
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob

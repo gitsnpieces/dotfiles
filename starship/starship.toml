@@ -2,7 +2,7 @@
 
 format = """
 [░▒▓](#a3aed2)\
-[  $os ](bg:#a3aed2 fg:#090c0c)\
+[   $os  ](bg:#a3aed2 fg:#090c0c)\
 [](bg:#5884db fg:#a3aed2)\
 $directory\
 [](fg:#5884db bg:#394260)\
@@ -46,10 +46,10 @@ style = "bg:#1d2230"
 format = '[[ 🕙 $time ](fg:#dae6fc bg:#1d2230)]($style)'
 
 [character]
-success_symbol = "[   ](bold green) "
-#success_symbol = "[[✔](bold green) [  ] "
-error_symbol = "[   ](bold red) "
-#error_symbol = "[ 💀 ](bold blue) "   
+success_symbol = "[   ╰─-╰─--- ](bold blue) "
+#success_symbol = "[ ✅  ---  ](bold green) "
+#error_symbol = "[ 💀  ---  ](bold red) "  
+error_symbol = "[   ╰─-╰─--- ](bold blue) "
 
 [os]
 disabled = false
