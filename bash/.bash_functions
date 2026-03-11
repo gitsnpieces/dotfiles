@@ -33,3 +33,12 @@ pasteget(){
 function set_win_title(){
      echo -ne "\033]0; $(basename "$USER@$HOSTNAME") \007"
 }
+
+# glsearch offline dirlog search
+glsearch() {
+    if [ "$2" == "-s" ]; then
+        grep -iF "$1" /home/sleep/copyleft/dirlog/copyleft-dirlog-040326.txt | awk '{$1=""; print $0}'
+    else
+        grep -iE "$1" /home/sleep/copyleft/dirlog/copyleft-dirlog-040326.txt | awk '{$1=""; print $0}'
+    fi
+}

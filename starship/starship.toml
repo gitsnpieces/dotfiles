@@ -1,200 +1,297 @@
-format = """\
-[╭╴](fg:arrow)\
-$username\
-$directory\
-$time\
-(\
-    $git_branch\
-    $git_status\
-)\
-(\
-    $python\
-    $conda\
-    $nodejs\
-)\
-$cmd_duration
-[╰─](fg:arrow)$character\
-"""
-# Add the modules you need
+"$schema" = 'https://starship.rs/config-schema.json'
 
-# Disables the blank line at the start of the prompt
+# - Recommended / tested with Font 'MesloLGS NF Regular' from: Meslo Nerd Font patched for Powerlevel10k
+#   Link: https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#manual-font-installation
+#         --> "Manual font installation", with currently 4 Font Types
+
+# - If you do not want the filling solid line in top row:
+#   set the fill symbol to ' '
+# - Shell [shell]:
+#   If you want to see the content of the shell module, search for [shell] and change 'disabled = true' to false
+# - '$line_break': everything from the next line on refers to the second line of the prompt
+# - Some modules listed further down will not show up (all the time), as their default value is 'disabled = true' or
+#   they are only displayed under certain conditions
+# - added but disabled modules: [battery], [time]
+#   - if you want to see them: search for the module and set 'disabled' to 'false' 
+# - Symbols:
+#   Don't be confused if you don't see any "real" symbols here. If Nerd-fonts are installed on your system, it should work.
+
+# Customizing the prompt (and placing desired modules at desired position and sequence):
+# ╭╴ # \u256D\u2574
+# ╰╴ # \u2570\u2574
+command_timeout = 2000
+#palette = "catppuccin_macchiato"
+format = """
+[╭╴](fg:#868686)\
+$os\
+$shell\
+$username\
+$hostname\
+$sudo\
+$directory\
+$direnv\
+$php\
+$python\
+$git_branch$git_commit$git_state$git_metrics$git_status\
+[ ](fg:#252525)\
+$fill\
+$fill\
+[ ](fg:#252525)\
+$status\
+$jobs\
+$memory_usage\
+$cmd_duration\
+$battery\
+$time\
+$line_break\
+\
+[╰╴](fg:#868686)\
+[$character]($style)"""
+
+# move the rest of the prompt to the right
+right_format = """
+[$localip]($style)"""
+
+# Inserts a blank line between shell prompts:
 add_newline = true
 
-
-# Palettes:
-#   old: the previous version.
-#   normal: dark gray / yellow / white palette.
-#   light: pastel light colors.
-# To change the colors: change to the corresponding palette.
-palette = "normal"
-
-[palettes.old]
-arrow = "#353535"
-os = "#3778BF"
-os_admin = "#6A040F"
-directory = "#3F37C9"
-node = "green"
-time = "#177E89"
-git = "#B02B10"
-git_status = "#8B1D2C"
-python = "#3776AB"
-conda = "#3EB049"
-java = "#861215"
-rust = "#C33C00"
-clang = "#00599D"
-duration = "yellow"
-text_color = "#EDF2F4"
-text_light = "#EDF2F4"
-
-[palettes.normal]
-arrow = "#353535"
-os = "#2C3032"
-os_admin = "#6A040F"
-directory = "#363C3E"
-time = "#474D5C"
-node = "#F1DEA9"
-git = "#D0DBDA"
-git_status = "#DFEBED"
-python = "#F5CB5C"
-conda = "#3EB049"
-java = "#861215"
-rust = "#C33C00"
-clang = "#00599D"
-duration = "#F4FBFF"
-text_color = "#EDF2F4"
-text_light = "#26272A"
-
-[palettes.light]
-arrow = "#353535"
-os = "#F7768E"
-os_admin = "#ACBEF1"
-directory = "#FF9578"
-time = "#FFDC72"
-git = "#F5F5F5"
-git_status = "#72FFD5"
-clang = "#67E3FF"
-java = "#FF52A3"
-python = "#B4F9F8"
-node = "#81FF85"
-conda = "#BAF5C0"
-duration = "#91FFE7"
-text_color = "#26272A"
-text_light = "#26272A"
-
-[username]
-style_user = 'os'
-style_root = 'os_admin'
-format = '[]($style)[  w11](bg:$style fg:text_color)[]($style)'
+# Customization and activation of some modules:
+# Listed in the order of their position in the module row above
+[os]
+format = "[](fg:#252525)[$symbol]($style)(bg:#252525)"
+style = "fg:#ff8300 bg:#252525"
 disabled = false
-show_always = true
-
-[character]
-success_symbol = "[󰍟](fg:arrow)"
-error_symbol = "[󰍟](fg:red)"
-
-[directory]
-format = " [](fg:directory)[  $path ]($style)[$read_only]($read_only_style)[](fg:directory)"
-truncation_length = 2
-style = "fg:text_color bg:directory"
-read_only_style = "fg:text_color bg:directory"
-before_repo_root_style = "fg:text_color bg:directory"
-truncation_symbol = "…/"
-truncate_to_repo = true
-read_only ="  "
-
-[time]
-disabled = false
-format = " [](fg:time)[ $time]($style)[](fg:time)"
-time_format = "%H:%M"
-style = "fg:text_color bg:time"
-
-[cmd_duration]
-format = " [](fg:duration)[ $duration]($style)[](fg:duration)"
-style = "fg:text_light bg:duration"
-min_time = 500
-
-[git_branch]
-format = " [](fg:git)[$symbol$branch](fg:text_light bg:git)[](fg:git)"
-symbol = " "
-
-[git_status]
-format = '([ ](fg:git_status)[ $all_status$ahead_behind ]($style)[](fg:git_status))'
-style = "fg:text_light bg:git_status"
-
-[docker_context]
-disabled=true
-symbol = " "
-
-[package]
-disabled=true
-
-[java]
-format = "[ ](fg:java)[$symbol$version](bg:java fg:text_color)[](fg:java)"
-version_format = "${raw}"
-symbol = " "
-disabled = true
-
-[nodejs]
-format = "[ ](fg:node)[$symbol$version]($style)[](fg:node)"
-style = "bg:node fg:text_light"
-symbol = " "
-version_format = "${raw}"
-disabled=false
-
-[rust]
-format = "[ ](fg:rust)[$symbol$version](bg:rust fg:text_color)[](fg:rust)"
-symbol = " "
-version_format = "${raw}"
-disabled=true
-
-[python]
-disabled=false
-format = '[ ](fg:python)[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\))]($style)[](fg:python)'
-symbol = " "
-version_format = "${raw}"
-style = "fg:text_light bg:python"
-
-[conda]
-format = "[ ](fg:conda)[$symbol$environment]($style)[](fg:conda)"
-style = "bg:conda fg:text_color"
-ignore_base = false
-disabled=false
-symbol = " "
-
-[c]
-format = "[ ](fg:clang)[$symbol($version(-$name) )](bg:clang fg:text_color)[](fg:clang)"
-symbol = " "
-version_format = "${raw}"
-disabled=true
 
 [os.symbols]
-Alpine = " "
-Amazon = " "
-Android = " "
-Arch = " "
-CentOS = " "
-Debian = " "
-DragonFly = " "
-Emscripten = " "
-EndeavourOS = " "
-Fedora = " "
-FreeBSD = " "
-Gentoo = " "
-Linux = " "
-Macos = " "
-Manjaro = " "
-Mariner = " "
-MidnightBSD = " "
-Mint = " "
-NetBSD = " "
-NixOS = " "
-openSUSE = " "
-Pop = " "
-Raspbian = " "
-Redhat = " "
-RedHatEnterprise = " "
-Redox = " "
-SUSE = " "
-Ubuntu = " "
-Unknown = " "
-Windows = " "
+AIX = "AIX "
+Alpaquita = "\uf26a " # \uf26a  # \ue3a5\ue390 
+AlmaLinux = "\uf31d " # 
+Alpine = "\uf300 " # ""
+Amazon = "\uf270 " # ""
+Android = "\ue70e " # ""
+Arch = "\uf303 " # ""
+Artix = "\uf31f " # 
+CentOS = "\uf304 " # ""
+Debian = "\uf306 " # ""
+DragonFly = "\ueef8 " #    🐉
+Emscripten = "\u26A1 " # ⚡
+EndeavourOS = "\uf322 " # "" # 
+Fedora = "\uf30a " # ""
+FreeBSD = "\uf30c " # ""
+Garuda = "\uf337 " # ""
+Gentoo = "\uf30d " # ""
+HardenedBSD = "\uf132 " # 
+Illumos = "\uf326 " # "🐦"
+Kali = "\uf327 " # 
+Linux = "\uf17c " # ""
+Mabox = "\uf1b2 " #  📦
+Macos = "\uf302 " # ""
+Manjaro = "\uf312 " # ""
+Mariner = "\ue7ae " # \ue7ae 
+MidnightBSD = "\ue3e0 " # 🌘
+Mint = "\uf30ezx " # ""
+NetBSD = "\u2691 " # ⚑
+NixOS = "\uf313 " # ""
+OpenBSD = "\uf328 " # ""
+OpenCloudOS = "\uf0c2 " # 
+openEuler = "\u2208 " # \u2208 ∈
+openSUSE = "\uf314 " # ""
+OracleLinux = "\u213A " # \u213A ℺ # ⊂⊃ \u2282\u2283
+Pop = "\uf32a " # ""
+Raspbian = "\uf315 " # ""
+Redhat = "\uf316 " # "" # 󱄛
+RedHatEnterprise = "\uf316 " # "" # 󱄛
+RockyLinux = "\uf32b " # 
+Redox = "\uf331 " #   󰺕
+Solus = "\uf32d " # "" # " "
+SUSE = "\uef6d " # ""
+Ubuntu = "\uf31b " # " "
+Ultramarine = "󱙳 " # 🔷
+Unknown = "\uf108 " # ""
+Void = "\uf32e " #  
+Windows = "\uf17a " # ""
+
+[shell]
+format = '[$indicator]($style)()'
+style = 'fg:#4653ff bg:#252525'
+# empty indicator (''): e.g. if you do not want to see indicator for your standard shell
+zsh_indicator = '%_ ' # '%_ ' '󰰶 '
+bash_indicator = '' # '   ' # '\$_ ' # "\uebca " # '\$_ '
+fish_indicator = '>> ' # "\uee41 " '󰈺 ' '>>_ '
+powershell_indicator = '>_ ' # "\uebc7 " ' ' '>_'
+unknown_indicator = '?_ ' # '?_ ' ' '
+disabled = false
+
+[username]
+format = '[ ](fg:#4653ff bold bg:#)[$user]($style)[ ](bg:#252525)'
+style_user = 'fg:#4653ff bold bg:#252525'
+style_root = 'fg:#ffa500 bold bg:#252525'
+show_always = false
+disabled = true
+
+[hostname]
+format = '[$ssh_symbol ](fg:orange bold bg:#252525)[$hostname](fg:#39FF14 bold bg:#252525)[ ](bg:#252525)'
+ssh_only = false
+ssh_symbol = '' # '' # '" '#' ' #' '# '⇒' # ' ' # 'ﬁ⇒'
+trim_at = '.companyname.com'
+disabled = false
+
+[sudo]
+format = '[ ](fg:#39ff14 bold bg:#252525)[ $symbol]($style)'
+style = 'fg:#39ff14 bold bg:#252525'
+symbol = ' ' # ' ❯ '
+disabled = true
+
+[directory]
+format = '[ ](fg:#39FF14 bold bg:#252525)[$read_only]($read_only_style)[$repo_root]($repo_root_style)[$path ]($style)'
+style = 'fg:#39FF14 bold bg:#252525'
+home_symbol = ' '
+read_only = ' ' # ' ' # ' ''
+read_only_style = 'fg:#39FF14 bold bg:#252525'
+truncation_length = 2
+truncation_symbol = '…/'
+truncate_to_repo = true
+repo_root_format = '[ ](fg:#6AC0FF bold bg:#252525)[$read_only]($read_only_style)[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path ]($style)'
+repo_root_style	= 'fg:#6AC0FF bold bg:#252525'
+use_os_path_sep = true
+disabled = false
+
+[direnv]
+symbol = 'direnv'
+style = 'fg:#505050 bold bg:#252525'
+format = "[❯ $symbol $loaded/$allowed ]($style)"
+allowed_msg = 'a' # 'ok' # '✓'
+not_allowed_msg = '!a' # 'nok' # '!'
+denied_msg = 'x' # '✘'
+loaded_msg = '+' # "\ueabc" # \ueabc  # '->' # 'yo' # '󰗡' # \udb81\udde1 # '󱥸✓' # '󱥸✓' # 
+unloaded_msg = '-' # "\ueabc!" # \ueabc ! # '->!' # 'no' # '󰅚' # '󱥸!' \udb86\udd78
+disabled = true
+
+[php]
+format = "[[ \u3009](fg:#7a86b8 bg:#252525)[$symbol](fg:#7a86b8 italic bg:#252525)($version )]($style)"
+style = 'fg:#7a86b8 bg:#252525)'
+symbol = "php " # \ue73d  # 󰌟
+
+[python]
+format = "[\u3009${symbol}${pyenv_prefix}(${version} )(($virtualenv) )]($style)"
+style = 'fg:orange bg:#252525'
+symbol = "\ue73c " # 
+pyenv_version_name = false
+
+[git_branch]
+format = '[❯ $symbol $branch(:$remote_branch)]($style)[ ](bg:#252525)'
+style = 'fg:#E04D27 bg:#252525'
+symbol = ''
+#ignore_branches = ['master', 'main']
+
+[git_commit]
+format = '[\($hash$tag\)]($style)[ ](bg:#252525)'
+style = 'fg:#E04D27 bg:#252525'
+commit_hash_length = 8
+tag_symbol = '  ' # '  ''
+tag_disabled = false
+disabled = true
+
+[git_metrics]
+format = '[\[+$added/]($added_style)[-$deleted\]]($deleted_style)[ ](bg:#252525)'
+added_style = 'fg:#E04D27 bg:#252525'
+deleted_style = 'fg:#E04D27 bg:#252525'
+disabled = true
+
+[git_status]
+format = '([$all_status$ahead_behind]($style))'
+style = 'fg:#E04D27 bg:#252525'
+conflicted = '[${count} ](fg:red bg:#252525)'
+ahead = '[⇡${count} ](fg:yellow bg:#252525)'
+behind = '[⇣${count} ](fg:yellow bg:#252525)'
+diverged = '[⇕${ahead_count}⇡${behind_count}⇣ ](fg:yellow bg:#252525)' # ⇕ ↕ ⇳ 󰹹 󰹺 󰧈
+up_to_date = '[✓ ](fg:green bg:#252525)'
+untracked = '[ﳇ${count} ](fg:red bg:#252525)' # ' ' # '? '
+stashed = '[${count} ](fg:#A52A2A bg:#252525)' # '📦 '# ' ' # ' ' # ' ' # ' '
+modified = '[󰷉${count} ](fg:#C8AC00 bg:#252525)' # '📝' # '! ' #  #  # 
+staged = '[${count} ](fg:green bg:#252525)' # '+ '
+renamed = '[${count} ](fg:yellow bg:#252525)' # ' ' # '﫦' # ᴂ #  #  #  # ﳳ
+deleted = '[﯊${count} ](fg:orange bg:#252525)' # '🗑 ' '- '
+disabled = true
+
+[fill]
+style = 'fg:505050'
+symbol = "\u2500" # "\u2500" "─" # no line: ' '
+
+[status]
+format = '[$symbol $status $hex_status(  $signal_number-$signal_name)]($style)'
+style = 'fg:red bg:#252525'
+symbol = ' ✘'
+disabled = true
+
+[jobs]
+format = "[ \ueab5 ](fg:blue bold bg:#252525)[$symbol $number]($style)"
+style = 'fg:blue bg:#252525'
+symbol = "\ueb7b" # \ueb7b  \uef0c 省 # '廒' # '󰜎' # ''
+symbol_threshold = 1
+number_threshold = 2
+disabled = true
+
+[memory_usage]
+format = "[ \ueab5 ](fg:purple bold bg:#252525)[$symbol ${ram} ${swap}]($style)"
+style = 'fg:purple bg:#252525'
+symbol = '﬙ 北' # '﬙ 痢' # '﬙ / 󰾵' # '󰍛 󰾵' # '﬙ 󰾴' # '﬙ 󰾶' # '﬙ 󰾷' '﬙ 󰣂'
+threshold = 75
+disabled = true
+
+[cmd_duration]
+format = "[ \ueab5 \uf017 $duration]($style)" # \ueab5 \uf017   
+style = 'fg:white bold bg:#252525'
+min_time = 500
+disabled = true
+
+[battery]
+format = "[ \ueab5 $symbol$percentage]($style)"
+full_symbol = '󰁹 '
+charging_symbol = '󰂄 '
+discharging_symbol = '󰂃 '
+unknown_symbol = '󰁽? '
+empty_symbol = '󰂎 '
+disabled = true
+
+[[battery.display]]
+threshold = 100 # show always
+style = 'fg:#505050 bg:#252525'
+
+[time]
+time_format = "%I:%M%P"
+format = '[$time](fg:#ff8300 bold bg:#252525)'
+disabled = false
+
+[localip]
+format = '[$localipv4](fg:#ff8300 bold bg:#252525)'
+ssh_only = true
+disabled = false
+
+[palettes.catppuccin_macchiato]
+rosewater = "#f4dbd6"
+flamingo = "#f0c6c6"
+pink = "#f5bde6"
+mauve = "#c6a0f6"
+red = "#ed8796"
+maroon = "#ee99a0"
+peach = "#f5a97f"
+yellow = "#eed49f"
+green = "#a6da95"
+teal = "#8bd5ca"
+sky = "#91d7e3"
+sapphire = "#7dc4e4"
+blue = "#8aadf4"
+lavender = "#b7bdf8"
+text = "#cad3f5"
+subtext1 = "#b8c0e0"
+subtext0 = "#a5adcb"
+overlay2 = "#939ab7"
+overlay1 = "#8087a2"
+overlay0 = "#6e738d"
+surface2 = "#5b6078"
+surface1 = "#494d64"
+surface0 = "#363a4f"
+base = "#24273a"
+mantle = "#1e2030"
+crust = "#181926"
