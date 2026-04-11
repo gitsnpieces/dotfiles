@@ -2,15 +2,16 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-# If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
-
 export VISUAL=nano
 export EDITOR=nano
 export HISTTIMEFORMAT="%F-%T "
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+# MPD server details
+export MPD_HOST=192.168.1.69
+export MPD_PORT=6600
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob
@@ -57,9 +58,12 @@ shopt -s cmdhist
 HISTSIZE=99999
 HISTFILESIZE=99999
 
-# initiate ssh-agent
-#eval $(ssh-agent -s)
-#ssh-add ~/.ssh/id_ed25519
+# start SSH agent if not running and add keys
+if [[ "$SSH_AUTH_SOCK" == "" ]]; then
+  eval "$(ssh-agent -s)"
+  # add default keys (e.g., id_rsa, id_ed25519) without prompting for passphrase immediately
+  ssh-add &>/dev/null 
+fi
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -134,7 +138,19 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+    function set_win_title(){
+        echo -ne "\\033]0; $(basename "$PWD") \\007"
+    }
 
-starship_precmd_user_func="set_win_title"
+# Created by `pipx` on 2025-11-30 08:56:17
+#export PATH="$PATH:/home/adam/.local/bin"
+#eval "$(register-python-argcomplete pipx)"
+#export PYENV_ROOT="$HOME/.pyenv"
+#[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+#eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
 
+PROMPT_COMMAND='echo -en "\033]0;$(whoami)@$(hostname):$(pwd)\a"'
 eval "$(starship init bash)"
+
+#export RCLONE_CONFIG=/etc/rclone/rclone.conf
