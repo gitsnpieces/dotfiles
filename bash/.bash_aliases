@@ -1,8 +1,7 @@
 # system aliases
 alias ls='eza -l -o -h -a -g --icons=always --git'
-alias df='df -hT'
+alias df='df -hT --total --sync'
 alias dmesg='sudo dmesg -T'
-alias pastemsg='{ printf '%s\n' "-- MY DMESG --"; dmesg; } | pastebin'
 alias mdadm='sudo mdadm --detail /dev/md0'
 alias update='sudo apt update'
 alias upgrade='sudo apt upgrade'
@@ -52,7 +51,9 @@ alias ipmi='sudo ipmitool'
 
 # asrock rack ipmi aliases
 alias fansmax='sudo ipmitool raw 0x3a 0x1 0x64 0x64 0x64 0x64 0x64 0x64 0x64 0x64'
+alias fans75='sudo ipmitool raw 0x3a 0x1 0x48 0x48 0x48 0x48 0x48 0x48 0x48 0x48'
 alias fans50='sudo ipmitool raw 0x3a 0x1 0x32 0x32 0x32 0x32 0x32 0x32 0x32 0x32'
+alias fans33='sudo ipmitool raw 0x3a 0x1 0x24 0x24 0x24 0x24 0x24 0x24 0x24 0x24'
 alias fans25='sudo ipmitool raw 0x3a 0x1 0x16 0x16 0x16 0x16 0x16 0x16 0x16 0x16'
 alias fansauto='sudo ipmitool raw 0x3a 0x1 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0'
 
@@ -68,6 +69,8 @@ alias push='git push origin main'
 alias pull='git pull'
 alias add='git add .'
 
-# glftpd dirlog dump fresh
-alias glupdate='/glftpd/bin/glutil -d | sed "s/^DIRLOG: //" | awk -F" - " "{print \$1}" > /home/sleep/copyleft/dirlog/cl-000026.txt'
-alias glsearch='/home/sleep/copyleft/scripts/glsearch.sh'
+# glutil fsearch
+alias fsearch='/glftpd/bin/scripts/flog/fsearch.sh '
+
+# glftpd dirlog search
+alias search='sudo /glftpd/bin/tur-search.sh '

@@ -152,5 +152,9 @@ fi
 
 PROMPT_COMMAND='echo -en "\033]0;$(whoami)@$(hostname):$(pwd)\a"'
 eval "$(starship init bash)"
+<<<<<<< HEAD
 
 #export RCLONE_CONFIG=/etc/rclone/rclone.conf
+=======
+export RCLONE_CONFIG=/etc/rclone/rclone.conf
+>>>>>>> 2e0c49c (aliases updated)
